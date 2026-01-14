@@ -3,7 +3,7 @@ import pika, sys, os, time
 
 def main():
     # Establish a connection to the RabbitMQ server
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host="localhost"))
+    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost', 5672))
     # Create a channel
     channel = connection.channel()
     qname = 'hello'
