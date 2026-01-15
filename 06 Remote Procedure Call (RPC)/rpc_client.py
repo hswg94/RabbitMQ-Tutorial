@@ -21,7 +21,6 @@ class FibonacciRpcClient(object):
             # when the client receives a response from the server, the on_response method is called
             on_message_callback=self.on_response,
             auto_ack=True)
-
         self.response = None
         self.corr_id = None
 
