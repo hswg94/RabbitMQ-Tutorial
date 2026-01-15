@@ -43,7 +43,7 @@ class FibonacciRpcClient(object):
             body=str(n))
         # Client waits until there is a response
         while self.response is None:
-            self.connection.process_data_events(time_limit=None)
+            self.connection.process_data_events(time_limit=60)
         return int(self.response)
 
 
