@@ -6,6 +6,7 @@ connection = pika.BlockingConnection(
     pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
 
+# An exchange with the "topic" type must use routing keys that contain words delimited by dots.
 channel.exchange_declare(exchange='topic_logs', exchange_type='topic')
 
 result = channel.queue_declare('', exclusive=True)
