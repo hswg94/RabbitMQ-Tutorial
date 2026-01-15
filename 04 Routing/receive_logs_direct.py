@@ -5,7 +5,7 @@ import sys
 connection = pika.BlockingConnection(
     pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
-
+# A direct exchange routes messages to a queue with a matching routing key
 channel.exchange_declare(exchange='direct_logs', exchange_type='direct')
 
 # create a queue with a random name, exclusive true means the queue is deleted when the connection is closed
@@ -19,7 +19,7 @@ if not severities:
     sys.exit(1)
 
 # bind the queue to the exchange with the specified routing keys (severities)
-# example: running python receive_logs_direct.py info warning error will bind the queue to all 3 routing keys
+# running python receive_logs_direct.py info warning error will bind the queue to all 3 routing keys
 for severity in severities:
     channel.queue_bind(
         exchange='direct_logs', queue=queue_name, routing_key=severity)
